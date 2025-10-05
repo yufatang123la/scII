@@ -21,7 +21,7 @@ The.h5ad file is the input dataset, the expression matrix for scRNA-seq data are
 
 **Running**
 
-python main.py
+`python main.py`
 
 **Output**
 
