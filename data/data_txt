@@ -1,2 +1,9 @@
-The expression matrix for scRNA-seq data are the gene expression matrix (either normalised or raw data), and gene actvitiy matrix for scATAC-seq data.
 
+#
+# The expression matrix for scRNA-seq data are the gene expression matrix (either normalised or raw data), 
+# and gene actvitiy matrix for scATAC-seq data.
+
+# detail
+# Due to file size limitations, we used a split-volume compression method when compressing the Kidney dataset. 
+# Therefore, when downloading the dataset, please ensure all `data_demo.z*` compressed files and `data_demo.zip` are 
+# saved in the same folder before proceeding with extraction.
