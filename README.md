@@ -30,4 +30,4 @@ Output the value of the evaluation metric and the prompt indicating successful i
 
 **Visualisation**
 
-scII_batch.tif, .scII_Cluster.tif, .scII_CellTypeProbability.tif are respectively the integrated batch map, cell clustering map, and predicted heat map of cell types in scATAC data.
+scII_batch.tif, scII_Cluster.tif, scII_CellTypeProbability.tif are respectively the integrated batch map, cell clustering map, and predicted heat map of cell types in scATAC data.
