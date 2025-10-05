@@ -2,12 +2,13 @@
 
 **Graphical Abstract**
 
-![image](fig/abstract_fig.png)
+![image](frameworkfig/abstract_fig.png)
+
 The graphical abstract outlines the scII model workflow, which comprises feature extraction using an encoder and self-attention, classification with MLP-Maxout to address dropout events, and cell selection via dynamic Gaussian mixture modeling, culminating in cross-modality integration.
 
 **scII Framework Figure**
 
-![image](fig/frameworkfig.png)
+![image](frameworkfig/frameworkfig.png)
 
 scII is an integrative framework consisting of four key modules: the RNA-guided imputation module, the feature extraction and classification module, the cell selection module, and the omics alignment module. 
 
