@@ -1,1 +1,2 @@
-_batch is integrtu 
+In the batch.tif graph, colors represent scRNA data and scATAC data respectively, 
+while in the cluster.tif graph, different colors indicate different cell types
