@@ -1,7 +1,6 @@
 **scII: Dual-Threshold Adaptive Integration of Single-Cell Multi-omics Data Driven by Imputation**
 
-![Image text]([https://github.com/yufatang123la/mian/fig/abstract_fig.png](https://github.com/yufatang123la/scII/blob/21dd07e73dfd5a44206ccf902e230898fb3d407f/fig/abstract_fig.png))
-
+![Image text]([https://github.com/yufatang123la/scII/blob/21dd07e73dfd5a44206ccf902e230898fb3d407f/fig/abstract_fig.png])
 
 **Installation**
 
