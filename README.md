@@ -1,5 +1,8 @@
 **scII: Dual-Threshold Adaptive Integration of Single-Cell Multi-omics Data Driven by Imputation**
 
+![Image text](https://github.com/yufatang123la/mian/fig/abstract_fig.png)
+
+
 **Installation**
 
 scII need to install python first, then pytorch and the necessary library files.
