@@ -15,7 +15,7 @@ scII is an integrative framework consisting of four key modules: the RNA-guided 
 
 scII need to install python first, then pytorch and the necessary library files.
 
-**Preparing intput **
+**Preparing intput**
 
 The.h5ad file is the input dataset, the expression matrix for scRNA-seq data are the gene expression matrix (either normalised or raw data), and gene actvitiy matrix for scATAC-seq data.
 
