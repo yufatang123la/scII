@@ -200,7 +200,7 @@ def save_result(
         ).numpy()
         evaluation = True
     except:
-        print("未提供目标细胞类型注释，跳过评估和概率图绘制")
+        print("skip")
         evaluation = False
         scatac_label_int = None
 
@@ -344,7 +344,7 @@ def save_result(
 
         ax.tick_params(axis='both', which='major', labelsize=10)
 
-        # 添加自定义Domain图例
+        # legend
         domain_labels = adata.obs["Domain"].unique()
         domain_labels = [label for label in ["scATAC", "scRNA"] if label in domain_labels]
         # domain_palette = sns.color_palette("hls", 2)
