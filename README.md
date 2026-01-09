@@ -2,7 +2,7 @@
 
 **Graphical Abstract**
 
-![image](frameworkfig/abstract_fig.tif)
+![image](frameworkfig/abstract_fig.png)
 
 The graphical abstract outlines the scII model workflow, which comprises feature extraction using an encoder and self-attention, classification with MLP-Maxout to address dropout events, and cell selection via dynamic Gaussian mixture modeling, culminating in cross-modality integration.
 
