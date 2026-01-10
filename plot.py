@@ -392,40 +392,7 @@ def save_result(
         evaluation = False
 
     if evaluation and not args.novel_type:
-        print("=======Eval=======")
-
-        count = torch.unique(scatac_label_int, return_counts=True, sorted=True)[1].float()
-        f1_weight = 1.0 / (count + 1e-6)
-        f1_weight = f1_weight / f1_weight.sum()
-        f1_weight = f1_weight.numpy()
-
-
-        scaler = MinMaxScaler(feature_range=(0.5, 1))
-        f1_weight = scaler.fit_transform(f1_weight.reshape(-1, 1)).flatten()
-        f1_weight = f1_weight / f1_weight.sum()
-        acc = accuracy_score(scatac_label_int, pred_vec)
-        f1_scores = f1_score(scatac_label_int, pred_vec, average=None)
-        f1_scores = np.clip(f1_scores, 0, 1)
-        #  F1-score
-        f1_acc = (f1_scores * f1_weight).sum()
-        f1_acc = np.clip(f1_acc, 0, 1)
-
-        # --- NMI, ARI, AMI  ---
-        nmi = normalized_mutual_info_score(scatac_label_int, pred_vec)
-        ari = adjusted_rand_score(scatac_label_int, pred_vec)
-        ami = adjusted_mutual_info_score(scatac_label_int, pred_vec)
-        # ---  NMI, ARI, AMI---
-        print("ACC: %.4f, F1-score: %.4f" % (acc, f1_acc))
-        print("NMI: %.4f, ARI: %.4f, AMI: %.4f" % (nmi, ari, ami))
-        if args.umap_plot:
-            Stype = silhouette_score(
-                adata.obsm["X_umap"], adata.obs["cell_type"].values
-            )
-            Somic = silhouette_score(
-                adata.obsm["X_umap"], adata.obs["Domain"].values
-            )
-            HSC = (2* (1 - (Somic + 1) / 2)* (Stype + 1)/ 2/ (1 - (Somic + 1) / 2 + (Stype + 1) / 2))
-            print("HSC: %.4f"% (HSC))
+  
     print(
         "Successful integration"
     )
