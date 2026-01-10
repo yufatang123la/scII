@@ -1,4 +1,4 @@
-**scII: Dual-Threshold Adaptive Integration of Single-Cell Multi-omics Data Driven by Imputation**
+**scII: Dual-Threshold Adaptive Integration of Single-Cell Multiomics Data Driven by Imputation**
 
 **Graphical Abstract**
 
