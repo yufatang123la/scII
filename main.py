@@ -110,6 +110,13 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     start_time = time.time()
+    parser.add_argument(
+        "--selection_mode",
+        type=str,
+        default="dual",
+        choices=["dual", "similarity", "mlp"],
+        help="dual: use both S^a and MLP loss; similarity: S^a only; mlp: MLP loss only."
+    )
     # Data configs
     parser.add_argument("--data_path", type=str, default="test/") #celltype
     parser.add_argument("--scrna_data", type=str, default="scRNA.h5ad") #[9134 , 16750]
@@ -127,8 +134,7 @@ if __name__ == "__main__":
     parser.add_argument("--max_iteration", default=1, type=int)
     parser.add_argument("--novel_type", action="store_true")
     # Training configs
-    #parser.add_argument('--num_mlps', type=int, default=3, help='创建的 MLP 分类器数量')
-
+   
     #parser.add_argument('--domain_loss_weight', type=float, default=0.3, help="Weight for domain alignment loss.")
     parser.add_argument("--batch_size", default=512, type=int)
     parser.add_argument("--train_epoch", default=1, type=int)
