@@ -34,9 +34,9 @@ class MaxOut(nn.Module):
     def forward(self, x):
         return x.view(x.size(0), -1, self.k).max(dim=2)[0]
 
-# MLP分
+
 class MLPClassifier(nn.Module):
-    def __init__(self, input_dim=64, hidden_dim=128, output_dim=7, k=2,dropout_prob = 0.01):
+    def __init__(self, input_dim=64, hidden_dim=128, output_dim=type_num, k=2,dropout_prob = 0.01):
         super(MLPClassifier, self).__init__()
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim
@@ -58,9 +58,7 @@ class MLPClassifier(nn.Module):
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-
-        """
+      
     def forward(self, x):
         return self.classifier(x)
 class Net(nn.Module):
@@ -78,12 +76,7 @@ class Net(nn.Module):
             nn.BatchNorm1d(64)
         )
         self.attention = SelfAttention(64, 64)  # Self-Attention
-        """
-        self.classifier = nn.Sequential(
-            nn.ReLU(),
-            nn.Linear(64, type_num),
-        )
-        """
+
 
         #self.classifier = nn.Sequential(
             #nn.ReLU(),
@@ -92,7 +85,7 @@ class Net(nn.Module):
 
         # MLP
         self.classifier = MLPClassifier(input_dim=64, hidden_dim=128, output_dim=type_num,k = 2)
-        self.classifier = MLPClassifier(input_dim=64, hidden_dim=128, output_dim=type_num)
+       
 
         self.adj_decoder = nn.Sequential(
             nn.Linear(64, 256),
@@ -146,13 +139,22 @@ class Net(nn.Module):
 
                 loss_epoch = loss_wce
 
-                if epoch >= self.align_loss_epoch:
+                 if epoch >= self.align_loss_epoch:
+                    if args.selection_mode == "dual":
+                        target_reliability = prob_feature[target_index] * prob_logit[target_index]
+                    elif args.selection_mode == "similarity":
+                        target_reliability = prob_feature[target_index]  # only S^a
+                    elif args.selection_mode == "mlp":
+                        target_reliability = prob_logit[target_index]  # only MLP loss
+                    else:
+                        raise ValueError(f"Unknown selection_mode: {args.selection_mode}")
+
                     loss_align = align_loss(
-                        scrna_h,
-                        scrna_y,
-                        scatac_h,
-                        preds[scatac_index],
-                        prob_feature[scatac_index] * prob_logit[scatac_index],
+                        source_h,
+                        source_y,
+                        target_h,
+                        preds[target_index],
+                        target_reliability, 
                     )
                     loss_epoch += loss_align
                     align_loss_epoch += loss_align.item()
@@ -277,11 +279,6 @@ def dynamic_gmm(X, n_components_range=(2, 10), metric_weights=None):
 
     prob = best_gmm.predict_proba(X)[:, best_gmm.means_.argmin()]
     return prob, best_n_components
-def gmm(X, metric_weights=None):
-
-    prob, best_n_components = dynamic_gmm(X, n_components_range=(2, 10), metric_weights=metric_weights)
-    return prob
-
 
 
 def feature_prototype_similarity(scrna_feature, scrna_label, scatac_feature):
